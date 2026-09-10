@@ -1,187 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Beginner course: build live dashboards from Google Sheets using AI, Apps Script, GitHub and Cloudflare.">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="AI Dashboard Academy — build a live construction dashboard from Google Sheets using ChatGPT, Apps Script, GitHub and Cloudflare.">
 <title>AI Dashboard Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-<button id="mobileMenu" class="mobile-menu">☰</button>
-<aside class="sidebar">
-  <div class="brand"><div class="brand-mark">AI</div><div><strong>Dashboard Academy</strong><small>AI-powered development</small></div></div>
-  <div class="course-progress"><div class="progress-head"><span>Course progress</span><b id="progressText">0% complete</b></div><div class="progress-track"><span id="progressBar"></span></div></div>
-  <label class="search"><span>⌕</span><input id="search" placeholder="Search lessons..." aria-label="Search lessons"></label>
-  <nav>
-    <div class="nav-title">START HERE</div>
-    <a class="nav-item" data-lesson="lesson-00">Welcome</a>
-    <a class="nav-item" data-lesson="lesson-01">01 · Your dataset</a>
-    <a class="nav-item" data-lesson="lesson-02">02 · GitHub account</a>
-    <a class="nav-item" data-lesson="lesson-03">03 · GitHub Desktop</a>
-    <div class="nav-title">AI & DATA</div>
-    <a class="nav-item" data-lesson="lesson-04">04 · ChatGPT workflow</a>
-    <a class="nav-item" data-lesson="lesson-05">05 · Data analysis</a>
-    <a class="nav-item" data-lesson="lesson-06">06 · Dashboard plan</a>
-    <div class="nav-title">BUILD</div>
-    <a class="nav-item" data-lesson="lesson-07">07 · HTML</a>
-    <a class="nav-item" data-lesson="lesson-08">08 · CSS</a>
-    <a class="nav-item" data-lesson="lesson-09">09 · JavaScript</a>
-    <a class="nav-item" data-lesson="lesson-10">10 · Google Sheets</a>
-    <a class="nav-item" data-lesson="lesson-11">11 · Apps Script</a>
-    <a class="nav-item" data-lesson="lesson-12">12 · Live dashboard</a>
-    <a class="nav-item" data-lesson="lesson-13">13 · KPIs & charts</a>
-    <a class="nav-item" data-lesson="lesson-14">14 · Filters & UX</a>
-    <div class="nav-title">PUBLISH</div>
-    <a class="nav-item" data-lesson="lesson-15">15 · GitHub deployment</a>
-    <a class="nav-item" data-lesson="lesson-16">16 · Cloudflare Pages</a>
-    <a class="nav-item" data-lesson="lesson-17">17 · Updates & maintenance</a>
-    <div class="nav-title">FINISH</div>
-    <a class="nav-item" data-lesson="lesson-18">18 · Case study</a>
-    <a class="nav-item" data-lesson="lesson-19">19 · Prompt library</a>
-    <a class="nav-item" data-lesson="lesson-20">20 · Capstone</a>
-  </nav>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="brand-mark">AI</div><div><b>Dashboard Academy</b><span>Build with AI · Learn by doing</span></div></div>
+  <div class="course-card"><div class="course-label">YOUR PROGRESS</div><div class="progress-row"><strong id="progressText">0%</strong><span id="lessonCount">0 / 20</span></div><div class="progress-track"><i id="progressBar"></i></div></div>
+  <div class="search-wrap"><span>⌕</span><input id="search" placeholder="Search modules…"></div>
+  <nav id="nav"></nav>
+  <div class="sidebar-footer"><span class="status-dot"></span> Self-paced course<br><small>20 modules · beginner friendly</small></div>
 </aside>
+<div class="overlay" id="overlay"></div>
 <main class="main">
-<header class="topbar"><span>AI Dashboard Academy</span><span class="pill">Beginner · 20 lessons</span></header>
-
-<section id="lesson-00" class="lesson hero-lesson">
-  <div class="eyebrow">WELCOME · YOUR JOURNEY STARTS HERE</div>
-  <h1>Build a live dashboard<br><em>without being a programmer.</em></h1>
-  <p class="lead">Turn a Google Sheet into a professional web dashboard using ChatGPT, Google Apps Script, GitHub and Cloudflare — one step at a time.</p>
-  <div class="architecture"><div><b>01</b><strong>Google Sheet</strong><span>Your data</span></div><i>→</i><div><b>02</b><strong>AI + Apps Script</strong><span>Connection</span></div><i>→</i><div><b>03</b><strong>HTML Dashboard</strong><span>Your interface</span></div><i>→</i><div><b>04</b><strong>GitHub + Cloudflare</strong><span>Live website</span></div></div>
-  <div class="callout"><strong>How this course works</strong><p>You will not learn programming first and build something months later. You will build immediately, while ChatGPT explains each piece as you go.</p></div>
-  <div class="objectives"><div><span>🎯</span><strong>Outcome</strong><p>A live dashboard connected to your Google Sheet.</p></div><div><span>🧠</span><strong>Approach</strong><p>AI does the heavy coding; you learn how to direct and verify it.</p></div><div><span>🔁</span><strong>Workflow</strong><p>Every change can move from AI → GitHub → live website.</p></div></div>
-  <button class="complete-btn">Mark as complete</button><div class="lesson-nav"><span></span><button data-next="lesson-01">Start Module 1 →</button></div>
-</section>
-
-<section id="lesson-01" class="lesson">
-<div class="eyebrow">MODULE 01 · DATA</div><h2>Start with the Google Sheet</h2><p class="lead">Your first job is not coding. It is making sure the AI understands the data you want to visualize.</p>
-<div class="step"><span>01</span><div><h3>Open your source sheet</h3><p>Use the Google Sheet you already have. For this training course, the example portfolio contains 20 projects and fields for budget, committed cost, paid amount, forecast cost, planned and actual progress, delays, variation orders, risks and status.</p></div></div>
-<div class="step"><span>02</span><div><h3>Share the sheet for analysis</h3><p>For a training exercise, use a copy of your data and choose the minimum sharing access required. Do not publish confidential company information.</p></div></div>
-<div class="step"><span>03</span><div><h3>Give ChatGPT the sheet context</h3><p>Upload a screenshot of the table and provide the sheet link if the environment can access it. The screenshot is important because it shows the actual columns and layout.</p><div class="prompt-box"><button class="copy-btn">Copy prompt</button><pre>I am a complete beginner.
-
-I want to turn this Google Sheet into a professional dashboard.
-I have attached a screenshot of my table and provided the sheet link.
-
-Please:
-1. Explain what each column represents.
-2. Identify useful KPIs.
-3. Recommend charts and filters.
-4. Suggest a dashboard layout.
-5. Identify any data-quality problems.
-6. Tell me what we should do next, one step at a time.
-
-Do not write code yet.</pre></div></div></div>
-<div class="checkpoint">✓ Checkpoint: ChatGPT can describe your data and recommend a dashboard before any code is written.</div>
-<button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-00">← Previous</button><button data-next="lesson-02">Next →</button></div>
-</section>
-
-<section id="lesson-02" class="lesson"><div class="eyebrow">MODULE 02 · GITHUB</div><h2>Create your GitHub project home</h2><p class="lead">GitHub stores the files that make your training website and dashboard. Think of it as the project's version-controlled home.</p><div class="cards"><article><b>Repository</b><p>A folder for your project online.</p></article><article><b>Commit</b><p>A saved version of your changes.</p></article><article><b>Push</b><p>Send local changes to GitHub.</p></article></div><div class="step"><span>01</span><div><h3>Create your account</h3><p>Open GitHub, create an account, verify your email, and sign in.</p></div></div><div class="step"><span>02</span><div><h3>Create the repository</h3><p>Name it <code>Dashboard-Training</code>. For this course, a public repository is convenient for a public training site; use a private repository if your materials are not meant to be public.</p></div></div><div class="step"><span>03</span><div><h3>Understand the project structure</h3><pre class="code-box"><button class="copy-btn">Copy</button><code>Dashboard-Training/
-├── index.html
-├── assets/
-│   ├── css/style.css
-│   └── js/app.js
-├── modules/
-├── prompts/
-└── templates/</code></pre></div></div><div class="checkpoint">✓ Checkpoint: Your repository exists and you understand where the website files will live.</div><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-01">← Previous</button><button data-next="lesson-03">Next →</button></div></section>
-
-<section id="lesson-03" class="lesson"><div class="eyebrow">MODULE 03 · GITHUB DESKTOP</div><h2>Learn the simple GitHub workflow</h2><p class="lead">GitHub Desktop gives beginners a visual way to work with repositories without memorizing Git commands.</p><div class="workflow"><span>Clone</span><b>→</b><span>Edit</span><b>→</b><span>Commit</span><b>→</b><span>Push</span></div><div class="step"><span>01</span><div><h3>Clone the repository</h3><p>Open GitHub Desktop, sign in, choose your repository and clone it to your computer.</p></div></div><div class="step"><span>02</span><div><h3>Edit a file</h3><p>Change the README or HTML file and save it.</p></div></div><div class="step"><span>03</span><div><h3>Commit and push</h3><p>Write a useful commit message, commit the changes, then push them to GitHub.</p></div></div><div class="callout"><strong>Golden rule</strong><p>Make small, meaningful commits. If something breaks, you can identify what changed.</p></div><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-02">← Previous</button><button data-next="lesson-04">Next →</button></div></section>
-
-<section id="lesson-04" class="lesson"><div class="eyebrow">MODULE 04 · AI</div><h2>Use ChatGPT as your development partner</h2><p class="lead">The skill is not asking AI to “make a dashboard.” The skill is giving AI enough context to make the right dashboard.</p><div class="compare"><div><small>WEAK</small><pre>Create a dashboard.</pre></div><div><small>BETTER</small><pre>I am a beginner. Here is my dataset and the business goal. Design an executive dashboard with KPIs, charts and filters. Explain your decisions before writing code.</pre></div></div><h3>The master prompt pattern</h3><pre class="prompt-box"><button class="copy-btn">Copy prompt</button><code>ROLE: You are a senior dashboard developer and teacher.
-CONTEXT: I am a complete beginner.
-DATA: [describe or attach the dataset]
-GOAL: [what the dashboard must help users decide]
-DESIGN: [preferred style]
-CONSTRAINTS: [hosting, libraries, mobile, etc.]
-TASK: [one specific thing you want now]
-
-Before coding, explain the approach and list assumptions.</code></pre><div class="checkpoint">✓ Checkpoint: You can ask AI for one controlled task instead of asking it to build everything blindly.</div><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-03">← Previous</button><button data-next="lesson-05">Next →</button></div></section>
-
-<section id="lesson-05" class="lesson"><div class="eyebrow">MODULE 05 · DATA ANALYSIS</div><h2>Turn rows into dashboard decisions</h2><p class="lead">A dashboard is useful only when the numbers answer a question.</p><div class="cards"><article><b>Cost</b><p>Budget, committed, paid and forecast.</p></article><article><b>Schedule</b><p>Planned progress, actual progress and delay days.</p></article><article><b>Change</b><p>Open VOs and VO value.</p></article><article><b>Risk</b><p>Open risks by project.</p></article></div><pre class="prompt-box"><button class="copy-btn">Copy prompt</button><code>Using my dataset, create a dashboard requirements table with:
-- KPI name
-- calculation
-- business question answered
-- recommended visual
-- filter dimensions
-- warning/threshold logic
-
-Keep it suitable for an executive audience.</code></pre><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-04">← Previous</button><button data-next="lesson-06">Next →</button></div></section>
-
-<section id="lesson-06" class="lesson"><div class="eyebrow">MODULE 06 · PLAN</div><h2>Design before you code</h2><p class="lead">Create a simple wireframe first. This prevents AI from producing a beautiful dashboard that answers the wrong questions.</p><div class="wireframe"><div class="wf-title">EXECUTIVE PROJECT PORTFOLIO</div><div class="wf-kpis"><span>Total Budget</span><span>Forecast</span><span>Progress</span><span>Delayed</span></div><div class="wf-chart">Budget vs Forecast</div><div class="wf-chart">Planned vs Actual Progress</div><div class="wf-table">Project performance table + filters</div></div><pre class="prompt-box"><button class="copy-btn">Copy prompt</button><code>Based on my dataset and requirements, propose a one-page executive dashboard wireframe. Prioritize clarity over decoration. Explain the purpose of each section.</code></pre><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-05">← Previous</button><button data-next="lesson-07">Next →</button></div></section>
-
-<section id="lesson-07" class="lesson"><div class="eyebrow">MODULE 07 · HTML</div><h2>Understand the dashboard's structure</h2><p class="lead">HTML defines what exists on the page: headings, cards, tables, buttons and sections.</p><pre class="code-box"><button class="copy-btn">Copy</button><code>&lt;main&gt;
-  &lt;header&gt;Project Portfolio&lt;/header&gt;
-  &lt;section class="kpis"&gt;...&lt;/section&gt;
-  &lt;section class="charts"&gt;...&lt;/section&gt;
-  &lt;section class="table"&gt;...&lt;/section&gt;
-&lt;/main&gt;</code></pre><pre class="prompt-box"><button class="copy-btn">Copy prompt</button><code>I am a beginner. Explain the HTML structure of my dashboard line by line. Do not change the code. Use simple language and explain why each section exists.</code></pre><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-06">← Previous</button><button data-next="lesson-08">Next →</button></div></section>
-
-<section id="lesson-08" class="lesson"><div class="eyebrow">MODULE 08 · CSS</div><h2>Make the dashboard look professional</h2><p class="lead">CSS controls layout, spacing, typography, responsiveness and visual hierarchy.</p><div class="callout"><strong>Beginner rule</strong><p>Do not redesign everything at once. Ask AI for one visual improvement, test it, then commit it.</p></div><pre class="prompt-box"><button class="copy-btn">Copy prompt</button><code>Improve the visual design of this dashboard without changing its data or functionality. Make it clean, professional and responsive. Explain every major CSS change before giving me the final code.</code></pre><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-07">← Previous</button><button data-next="lesson-09">Next →</button></div></section>
-
-<section id="lesson-09" class="lesson"><div class="eyebrow">MODULE 09 · JAVASCRIPT</div><h2>Make the dashboard interactive</h2><p class="lead">JavaScript reads data, calculates values, updates the page and responds to filters and buttons.</p><pre class="code-box"><button class="copy-btn">Copy</button><code>fetch(DATA_URL)
-  .then(response =&gt; response.json())
-  .then(data =&gt; renderDashboard(data));</code></pre><pre class="prompt-box"><button class="copy-btn">Copy prompt</button><code>Explain this JavaScript to a complete beginner. Show me exactly where the external data enters the dashboard and where the KPI values are calculated.</code></pre><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-08">← Previous</button><button data-next="lesson-10">Next →</button></div></section>
-
-<section id="lesson-10" class="lesson"><div class="eyebrow">MODULE 10 · GOOGLE SHEETS</div><h2>Prepare the live data source</h2><p class="lead">Your sheet remains the place where users update the business data. The dashboard should consume the latest data rather than requiring manual copying.</p><div class="step"><span>01</span><div><h3>Keep a clean header row</h3><p>Use consistent column names. Avoid merged cells and decorative rows inside the data table.</p></div></div><div class="step"><span>02</span><div><h3>Keep data types consistent</h3><p>Dates should be dates, numbers should be numbers, and percentages should follow one convention.</p></div></div><div class="step"><span>03</span><div><h3>Separate data from presentation</h3><p>Do not rely on cell colors or manual formatting as the source of dashboard logic.</p></div></div><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-09">← Previous</button><button data-next="lesson-11">Next →</button></div></section>
-
-<section id="lesson-11" class="lesson"><div class="eyebrow">MODULE 11 · APPS SCRIPT</div><h2>Create the live connection</h2><p class="lead">Apps Script can expose your Google Sheet data through a web-app endpoint. The HTML dashboard can then request the current data.</p><div class="architecture compact"><div><b>01</b><strong>Sheet</strong><span>Source</span></div><i>→</i><div><b>02</b><strong>Apps Script</strong><span>Connector</span></div><i>→</i><div><b>03</b><strong>JSON</strong><span>Data response</span></div><i>→</i><div><b>04</b><strong>Dashboard</strong><span>Display</span></div></div><pre class="code-box"><button class="copy-btn">Copy</button><code>function doGet() {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Projects_Data');
-  const values = sheet.getDataRange().getValues();
-  const headers = values.shift();
-  const data = values.map(row =&gt; Object.fromEntries(headers.map((h,i) =&gt; [h,row[i]])));
-  return ContentService
-    .createTextOutput(JSON.stringify(data))
-    .setMimeType(ContentService.MimeType.JSON);
-}</code></pre><div class="warning"><strong>⚠ Security</strong><p>Do not put passwords, API keys or confidential information in client-side HTML or public repositories. Use appropriate access controls for real company data.</p></div><pre class="prompt-box"><button class="copy-btn">Copy prompt</button><code>I have a Google Sheet with one data table named Projects_Data. Create a Google Apps Script web app that returns the rows as JSON. Explain deployment and permissions step by step for a complete beginner. Do not expose secrets in the HTML.</code></pre><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-10">← Previous</button><button data-next="lesson-12">Next →</button></div></section>
-
-<section id="lesson-12" class="lesson"><div class="eyebrow">MODULE 12 · BUILD</div><h2>Connect the HTML dashboard</h2><p class="lead">Once Apps Script gives you a web-app URL, place that URL in the dashboard JavaScript and fetch the live JSON.</p><pre class="code-box"><button class="copy-btn">Copy</button><code>const DATA_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
-
-async function loadData() {
-  const response = await fetch(DATA_URL);
-  if (!response.ok) throw new Error('Unable to load dashboard data');
-  const data = await response.json();
-  renderDashboard(data);
-}</code></pre><div class="checkpoint">✓ Checkpoint: Change a safe value in the Google Sheet, refresh the dashboard, and confirm the dashboard reads the new value.</div><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-11">← Previous</button><button data-next="lesson-13">Next →</button></div></section>
-
-<section id="lesson-13" class="lesson"><div class="eyebrow">MODULE 13 · VISUALIZATION</div><h2>Build KPIs and charts</h2><p class="lead">Start with a few high-value visuals. More charts do not automatically make a better dashboard.</p><div class="cards"><article><b>KPI cards</b><p>Total budget, committed, paid, forecast, projects.</p></article><article><b>Bar chart</b><p>Budget versus forecast by project.</p></article><article><b>Progress chart</b><p>Planned versus actual progress.</p></article><article><b>Ranking</b><p>Projects with the highest delay.</p></article></div><pre class="prompt-box"><button class="copy-btn">Copy prompt</button><code>Add the following visuals to my existing dashboard without breaking the live Google Sheet connection: [list visuals]. Keep the current design and explain the data calculation for each visual.</code></pre><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-12">← Previous</button><button data-next="lesson-14">Next →</button></div></section>
-
-<section id="lesson-14" class="lesson"><div class="eyebrow">MODULE 14 · UX</div><h2>Add filters and useful interactions</h2><p class="lead">Let users answer questions quickly without overwhelming them.</p><div class="cards"><article><b>Project</b><p>Focus on one project.</p></article><article><b>Contractor</b><p>Compare contractor portfolios.</p></article><article><b>Status</b><p>Active versus closing.</p></article></div><pre class="prompt-box"><button class="copy-btn">Copy prompt</button><code>Add a Project, Contractor and Status filter to my dashboard. Filters must update KPI cards, charts and the project table together. Do not change the data source. Explain the JavaScript logic.</code></pre><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-13">← Previous</button><button data-next="lesson-15">Next →</button></div></section>
-
-<section id="lesson-15" class="lesson"><div class="eyebrow">MODULE 15 · GITHUB</div><h2>Put the finished dashboard in GitHub</h2><p class="lead">GitHub becomes the source of truth for your HTML, CSS and JavaScript files.</p><div class="workflow"><span>AI change</span><b>→</b><span>Test locally</span><b>→</b><span>Commit</span><b>→</b><span>Push</span></div><pre class="prompt-box"><button class="copy-btn">Copy prompt</button><code>Review my dashboard files before I commit them. Check for broken paths, missing files, JavaScript errors, insecure secrets, and references that will fail when hosted from GitHub. Give me a checklist first.</code></pre><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-14">← Previous</button><button data-next="lesson-16">Next →</button></div></section>
-
-<section id="lesson-16" class="lesson"><div class="eyebrow">MODULE 16 · CLOUDFLARE</div><h2>Publish your live website</h2><p class="lead">Connect the GitHub repository to Cloudflare Pages so your site can be hosted and redeployed when the repository changes.</p><div class="architecture compact"><div><b>01</b><strong>GitHub</strong><span>Source code</span></div><i>→</i><div><b>02</b><strong>Cloudflare Pages</strong><span>Build/deploy</span></div><i>→</i><div><b>03</b><strong>Live URL</strong><span>Visitors</span></div></div><div class="step"><span>01</span><div><h3>Connect the repository</h3><p>In Cloudflare Pages, connect your GitHub account and select the repository.</p></div></div><div class="step"><span>02</span><div><h3>Configure a static site</h3><p>For this course website, there is no server build process required. Your HTML/CSS/JS files are the site.</p></div></div><div class="step"><span>03</span><div><h3>Deploy and test</h3><p>Open the generated URL and test navigation, assets, mobile layout and the live data connection.</p></div></div><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-15">← Previous</button><button data-next="lesson-17">Next →</button></div></section>
-
-<section id="lesson-17" class="lesson"><div class="eyebrow">MODULE 17 · MAINTENANCE</div><h2>Use AI to maintain the project safely</h2><p class="lead">Never ask AI to change a large project without giving it the current files and a precise task.</p><div class="cards"><article><b>Bug fix</b><p>Give the error, relevant file and expected behavior.</p></article><article><b>New feature</b><p>Describe the user outcome before implementation.</p></article><article><b>Design change</b><p>Ask AI to preserve existing functionality.</p></article></div><pre class="prompt-box"><button class="copy-btn">Copy prompt</button><code>I am updating an existing dashboard.
-Here is the current file: [paste/file]
-
-Task: [one change]
-
-Requirements:
-- Do not remove existing functionality.
-- Keep the Google Sheet connection working.
-- Keep the layout responsive.
-- Tell me which lines/files changed.
-- Return complete replacement files only where necessary.</code></pre><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-16">← Previous</button><button data-next="lesson-18">Next →</button></div></section>
-
-<section id="lesson-18" class="lesson"><div class="eyebrow">MODULE 18 · CASE STUDY</div><h2>Construction portfolio dashboard</h2><p class="lead">Use the training dataset as a realistic running example. The sample contains 20 projects with cost, progress, delay, VO, risk and status fields.</p><div class="cards"><article><b>Executive</b><p>Portfolio budget, forecast, paid, progress and alerts.</p></article><article><b>Cost</b><p>Budget versus committed, paid and forecast.</p></article><article><b>Progress</b><p>Planned versus actual and delay ranking.</p></article><article><b>Risk & change</b><p>Open risks, VOs and VO value.</p></article></div><pre class="prompt-box"><button class="copy-btn">Copy prompt</button><code>Build the executive page for my construction portfolio dataset. Use the existing live data connection. Prioritize portfolio-level KPIs, project exceptions and clear decision-making. Do not invent fields that are not present.</code></pre><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-17">← Previous</button><button data-next="lesson-19">Next →</button></div></section>
-
-<section id="lesson-19" class="lesson"><div class="eyebrow">MODULE 19 · PROMPT LIBRARY</div><h2>Your AI toolbox</h2><p class="lead">Save these patterns and reuse them. Always give AI the current context before requesting a change.</p><div class="prompt-grid"><div><h3>Analyze</h3><pre>Analyze this dataset and recommend KPIs, charts and filters.</pre></div><div><h3>Build</h3><pre>Create the feature without changing the existing data connection.</pre></div><div><h3>Explain</h3><pre>Explain this code line by line for a complete beginner.</pre></div><div><h3>Debug</h3><pre>Find the cause of this error and propose the smallest safe fix.</pre></div><div><h3>Review</h3><pre>Audit this project for broken links, paths and security issues.</pre></div><div><h3>Improve</h3><pre>Improve UX while preserving all current functionality.</pre></div></div><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-18">← Previous</button><button data-next="lesson-20">Next →</button></div></section>
-
-<section id="lesson-20" class="lesson"><div class="eyebrow">MODULE 20 · CAPSTONE</div><h2>Build your own dashboard</h2><p class="lead">Now repeat the entire workflow with a real dataset of your choice.</p><div class="capstone"><div><span>01</span><strong>Data</strong><p>Prepare and validate your Google Sheet.</p></div><div><span>02</span><strong>AI analysis</strong><p>Get KPIs, visuals and a dashboard plan.</p></div><div><span>03</span><strong>Connection</strong><p>Create and test your Apps Script endpoint.</p></div><div><span>04</span><strong>Build</strong><p>Create the responsive HTML dashboard.</p></div><div><span>05</span><strong>GitHub</strong><p>Commit your working project.</p></div><div><span>06</span><strong>Cloudflare</strong><p>Deploy and test the live URL.</p></div></div><div class="checkpoint"><strong>Final checklist</strong><br>□ Data updates correctly<br>□ Dashboard reads current data<br>□ KPIs are calculated correctly<br>□ Filters work<br>□ Mobile layout works<br>□ No secrets are exposed<br>□ GitHub contains the current version<br>□ Live Cloudflare site works</div><pre class="prompt-box"><button class="copy-btn">Copy prompt</button><code>Act as my final project reviewer. I will provide my Google Sheet structure, dashboard files and live URL.
-
-Check the project for:
-1. Data accuracy
-2. Broken functionality
-3. Responsive design
-4. Security risks
-5. Maintainability
-6. UX quality
-
-Give me a prioritized action list. Do not rewrite the project unless I ask.</code></pre><button class="complete-btn">Mark as complete</button><div class="lesson-nav"><button data-prev="lesson-19">← Previous</button><span class="finish">🎉 Course complete</span></div></section>
-
-<footer>AI Dashboard Academy · Built for beginners · Learn, build, test, publish.</footer>
-</main>
+<header class="topbar"><button class="icon-btn mobile-only" id="menuBtn">☰</button><div class="crumb"><span>AI Dashboard Academy</span><b id="topModule">Welcome</b></div><div class="top-actions"><button class="icon-btn" id="resetBtn" title="Reset progress">↺</button><button class="avatar">SA</button></div></header>
+<div id="content"></div>
+<footer>AI Dashboard Academy · Google Sheets → Apps Script → HTML/CSS/JS → GitHub → Cloudflare</footer>
+</main></div>
 <script src="assets/js/app.js"></script>
-</body>
-</html>
+</body></html>
